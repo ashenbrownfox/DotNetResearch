@@ -1,0 +1,19 @@
+﻿@page
+@model ImageScrapperRazor.Pages.ImageModel
+@{
+    ViewData["Title"] = "Image";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Image</h1>
+<p>Below is a form where we will enter url</p>
+<form action="" method="POST">
+    <label for="url">URL:</label>
+    <input type="text" name="url" placeholder="paste url here"/>
+    <button type="submit" name="submitButton" value="Submit">Submit</button>
+
+</form>
+<div class="data">
+
+</div>
+
