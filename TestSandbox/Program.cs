@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Net;
+using System.Text;  // for class Encoding
+using System.IO; 
 using AngleSharp;
 
 namespace TestSandbox
@@ -9,12 +13,14 @@ namespace TestSandbox
     {
         public static void Main(string[] args)
         {
-            //<img src='https://www.creativeshrimp.com/wp-content/uploads/2015/11/SPORTFUCK.jpg' alt='sport'/>
-            ParseTags("https://www.creativeshrimp.com/top-30-artworks-of-beeple.html").Wait();
-
+            var SampleLink = "https://www.creativeshrimp.com/top-30-artworks-of-beeple.html";
+            //ParseTagsASync(SampleLink).Wait();
+            HTMLAgility ha = new HTMLAgility();
+            ha.ParseTags(SampleLink);
         }
 
-        public static async Task ParseTags(string url)
+        //http client
+        public static async Task<List<string>> ParseTagsASync(string url)
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "C# program");
@@ -37,15 +43,22 @@ namespace TestSandbox
 
             Console.WriteLine("Now searching for all imagetags");
             var imageTags = document.QuerySelectorAll("img");
-
+            var imageCollections = new List<string>();
             foreach(var img in imageTags)
             {
                 var imgsrc = img.GetAttribute("src");
                 var p = document.CreateElement("img");
                 p.SetAttribute("src", imgsrc);
                 document.Body.AppendChild(p);
-                Console.WriteLine("Added " +src);
+                imageCollections.Add(img.OuterHtml);
+                Console.WriteLine("Added " +imgsrc);
             }
+            Console.WriteLine("Now the collcetion");
+            foreach(var i in imageCollections)
+            {
+                Console.WriteLine(i);
+            }
+            return imageCollections;
         }
 
     }
