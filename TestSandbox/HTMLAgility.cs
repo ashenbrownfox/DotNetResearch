@@ -17,13 +17,27 @@ namespace TestSandbox
             var imageCollections = new List<string>();
             foreach (var n in imgNode)
             {
-                imageCollections.Add(n.OuterHtml);
+                if (validURL(n.OuterHtml)) {
+                    imageCollections.Add(n.OuterHtml);
+                } 
+                
             }
             foreach (var item in imageCollections)
             {
                 Console.WriteLine(item);
             }
             return imageCollections;
+        }
+        public Boolean validURL(string imgSrc)
+        {
+            if (imgSrc.StartsWith('/') || imgSrc.StartsWith('.'))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

@@ -13,10 +13,13 @@ namespace TestSandbox
     {
         public static void Main(string[] args)
         {
-            var SampleLink = "https://www.creativeshrimp.com/top-30-artworks-of-beeple.html";
+            var SampleLink = "http://www.365icc.com/MyArticleA/225989.aspx";
             //ParseTagsASync(SampleLink).Wait();
             HTMLAgility ha = new HTMLAgility();
             ha.ParseTags(SampleLink);
+            
+            Console.WriteLine(Path.IsPathRooted((@"../Communities/n00000317/Themes/Theme1_CHS/Images/weixingongzonghao_n00000317_2code.jpg")));
+            Console.WriteLine(Path.IsPathRooted((@"http://sites.cloud123.net/n00000331/ShowImagePage.aspx?commid=665&ImageID=7643")));
         }
 
         //http client
